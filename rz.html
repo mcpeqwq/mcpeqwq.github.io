@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>mcpeqwq 个人网站 更新日志(runoob.com)</title>
+</head>
+<body>
+
+<marquee bgcolor="#00ccff" scrollamount="7"><font color="#000000">本个人网站的主站不是这个，这是日志，点击这个去主站<a href="https://mcpeqwq.github.io">进入本站</a></font></marquee>
+<div style="background-image: url('/background.jpg');">
+<body style="color: #00ccff;">
+
+<p>日志于2024.6.14更新，网站是2024.5.1创建</p>
+<p>本网站由网络提供html者，minqwq，stevemcpe一起创造</p>
+<a href="https://github.com">吃水不忘挖井人 Github</a>
+
+
+<p>2024年日志</p>
+6.14 开发启始页 更新日志</p>
+
+
+<script>
+function showTime(clock){
+    var now = new Date();
+    var year = now.getFullYear();
+    var month= now.getMonth();
+    var day = now.getDate();
+    var hour = now.getHours();
+    var minu = now.getMinutes();
+    var second = now.getSeconds();
+    month = month+1;
+    var arr_work = new Array("7week","1week","2week","3week","4week","5week","6week");
+    var week = arr_work[ now.getDay()];
+    var time = year+"-"+month+"-"+day+" "+ week+" "+hour+"h "+minu+"m "+second+"s ";
+    clock.innerHTML=""+time;
+}
+window.onload = function(){
+    var clock = document.getElementById("clock");
+    window.setInterval("showTime(clock)",1000);
+
+}
+</script>
+<style>
+@font-face { 
+    font-family: 'Unifont';  
+    src: url('https://minqwq.github.io/unifont.ttf') format('truetype'); 
+}
+</style>
+<style>
+body {
+    font-family: 'Unifont';
+}
+
+<p align="center" style="background:#000000"><small>©MCPE Studio 2022-2024</small></p>
