@@ -4,8 +4,13 @@
 <meta charset="utf-8">
 <title>一个简简单单的起始页</title>
 </head>
-<body>
-    <h1>e</h1>
-    <p>e</p>
-</body>
-</html>
+
+<body style="color: #FFFFFF;">
+<marquee bgcolor="#FFFFFF" scrollamount="7"><font color="#000000">这是由stevemcpe minqwq开发的起始页</font></marquee>
+<div style="background-image: url('/background.jpg');">
+
+<p>这是一个正在开发的起始页</p>
+<p>如果你不是开发人员，请不要设为默认的</p>
+<p>搜索引擎以bing搜索，如要使用官方建议点击这个<a href="bing.com">官方点击这个</a>吧</p>
+<p>上方官方无法使用旧的浏览器，IE不要访问Bing，旧浏览器不是IE的可以使用这个</p>
+
