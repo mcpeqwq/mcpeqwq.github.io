@@ -18,39 +18,6 @@
 <p>2024年日志</p>
 6.14 开发启始页 更新日志</p>
 
-
-<script>
-function showTime(clock){
-    var now = new Date();
-    var year = now.getFullYear();
-    var month= now.getMonth();
-    var day = now.getDate();
-    var hour = now.getHours();
-    var minu = now.getMinutes();
-    var second = now.getSeconds();
-    month = month+1;
-    var arr_work = new Array("7week","1week","2week","3week","4week","5week","6week");
-    var week = arr_work[ now.getDay()];
-    var time = year+"-"+month+"-"+day+" "+ week+" "+hour+"h "+minu+"m "+second+"s ";
-    clock.innerHTML=""+time;
-}
-window.onload = function(){
-    var clock = document.getElementById("clock");
-    window.setInterval("showTime(clock)",1000);
-
-}
-</script>
-<style>
-@font-face { 
-    font-family: 'Unifont';  
-    src: url('https://minqwq.github.io/unifont.ttf') format('truetype'); 
-}
-</style>
-<style>
-body {
-    font-family: 'Unifont';
-}
-
 <p align="center" style="background:#000000"><small>©MCPE Studio 2022-2024</small></p>
 
 <a href="https://mcpeqwq.github.io/bing">启始页链接</a>
