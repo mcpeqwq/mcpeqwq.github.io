@@ -14,3 +14,41 @@
 <p>搜索引擎以bing搜索，如要使用官方建议点击这个<a href="bing.com">官方点击这个</a>吧</p>
 <p>上方官方无法使用旧的浏览器，IE不要访问Bing，旧浏览器不是IE的可以使用这个</p>
 
+input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid gray;
+      border-radius: 5px;
+
+      background-image: url("search-icon.png");
+      background-repeat: no-repeat;
+      background-position: 8px center;
+      padding-left: 40px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+
+    @media screen and (max-width: 600px) {
+      input[type="text"] {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <input type="bing.cn" placeholder="Search...">
+  <button>Search</button>
+</body>
+</html>
