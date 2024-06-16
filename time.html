@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Beijing Time-GMT+8:00 Time-给中国人老设备用的时间查看器</title>
+</head>
+<body>
+
+<marquee bgcolor="#FFFFFF" scrollamount="7"><font color="#000000">欢迎使用这个时间查看器！</font></marquee>
+<div style="background-image: url('/background.jpg');">
+<body style="color: #FFFFFF;">
+
+<p>我只说一遍！！！ GMT+8:00 Beijing Time</p>
+<p>给老设备用的时钟查看器</p>
+
+<img src="https://api.huxianbk.cn/IP-master/" width="343" height="144">
+
+    <!--setInterval实时显示时间-->
+<body>
+    <span id="time"></span>
+</body>
+<script>
+    function mytime(){
+        var a = new Date();
+        var b = a.toLocaleTimeString();
+        var c = a.toLocaleDateString();
+        document.getElementById("time").innerHTML = c+"&nbsp"+b;
+        }
+    setInterval(function() {mytime()},1000);
+</script>
+
+<iframe name="weather_inc" 
+  src="http://i.tianqi.com/index.php?c=code&id=7" 
+  style="border:solid 1px #7ec8ea" 
+  width="220" height="90" frameborder="0" 
+  marginwidth="0" marginheight="0" scrolling="no">
+</iframe>
