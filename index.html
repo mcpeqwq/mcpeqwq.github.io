@@ -114,6 +114,20 @@ body {
     })
     .catch(console.error)
 </script>
+
+<p id="hitokoto">
+  <a href="#" id="hitokoto_text">:D 获取中...</a>
+</p>
+<script>
+  fetch('https://v1.hitokoto.cn/?c=f&encode=text')
+    .then(response => response.json())
+    .then(data => {
+      const hitokoto = document.querySelector('#hitokoto_text')
+      hitokoto.href = `https://v1.hitokoto.cn/?uuid=${data.uuid}`
+      hitokoto.innerText = data.hitokoto
+    })
+    .catch(console.error)
+</script>
 <p>Music 利用网易云源</p>
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=520 src="//music.163.com/outchain/player?type=0&id=7068025847&auto=1&height=430"></iframe>
