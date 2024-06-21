@@ -101,20 +101,19 @@ body {
 她为什么是纸片人啊</p>
 
 <p>一言</p>
-{
-  "code": 200,
-  "msg": "success",
-  "data": {
-    "id": "1320058408000",
-    "hitokoto": "我没有梦想，但是我能保护！",
-    "cat": "a",
-    "catname": "Anime - 动画",
-    "author": "魅影陌客",
-    "source": "假面骑士555",
-    "date": "1320058408"
-  }
-}
-
+<p id="hitokoto">
+  <a href="#" id="hitokoto_text">:D 获取中...</a>
+</p>
+<script>
+  fetch('https://v1.hitokoto.cn')
+    .then(response => response.json())
+    .then(data => {
+      const hitokoto = document.querySelector('#hitokoto_text')
+      hitokoto.href = `https://hitokoto.cn/?uuid=${data.uuid}`
+      hitokoto.innerText = data.hitokoto
+    })
+    .catch(console.error)
+</script>
 <p>Music 利用网易云源</p>
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=520 src="//music.163.com/outchain/player?type=0&id=7068025847&auto=1&height=430"></iframe>
