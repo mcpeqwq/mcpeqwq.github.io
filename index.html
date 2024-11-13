@@ -6,7 +6,7 @@
 </head>
 
 <body style="color: #FFFFFF;">
-<div style="background-image: url('/f8ec0228e383cdb5.jpg');">
+<div style="background-image: url('/background.jpg');">
 <marquee bgcolor="#39C5BB" scrollamount="7"><font color="#000000">一万年太久，只争朝夕。 -毛泽东</font></marquee>
 
 <h1 align="center">MCPEQWQ BLOG</h1>
@@ -41,20 +41,6 @@
     .catch(console.error)
 </script>
 
-<p id="hitokoto">
-  <a href="#" id="hitokoto_text">:获取中...</a>
-</p>
-<script>
-  fetch('https://v1.hitokoto.cn')
-    .then(response => response.json())
-    .then(data => {
-      const hitokoto = document.querySelector('#hitokoto_text')
-      hitokoto.href = `https://hitokoto.cn/?uuid=${data.uuid}`
-      hitokoto.innerText = data.hitokoto
-    })
-    .catch(console.error)
-</script>
-    
 <p>本站所有链接</p>
 <a href="https://www.minqwq.us.kg">minqwq 个人网站</a>
 <a href="https://amdisyes.github.io">AMDISYES 个人网站</a>
@@ -65,7 +51,8 @@
 <a href="https://chiyao6840.github.io">chiyao 个人网站</a>
 <a href="https://mc-windows114514.github.io/winnb">windows1145 个人网站</a>
 <a href="https://mcpeqwq.github.io/time">时间查看</a>
-<a href="https://outice2024.github.io/outice">Outice 个人网站</a>    
+<a href="https://outice2024.github.io/outice">Outice 个人网站</a>   
+   <a href="https://templeovo.github.io">Temple 个人网站</a>
 <p>已经访问了多少次</p>
 <p style="background:#66CCFF" align="center" id="clock"><font color="#39C5BB"></font></p>
 <img src="https://count.himiku.com/get/@mcpeqwq?theme=rule34" alt="counter" />
