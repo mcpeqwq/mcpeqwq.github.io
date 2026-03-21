@@ -1,96 +1,11 @@
 <!DOCTYPE html>
-<head>
-  <meta charset="utf-8">
-  <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#fff">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0,
+<meta charset="utf-8">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#fff">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,
                                  maximum-scale=1.0, user-scalable=no">
-  <title>chrome://dino/ - 恐龙游戏，按空格键即可畅玩</title>
-  <style>/* Copyright 2017 The Chromium Authors
- * Use of this source code is governed by a BSD-style license that can be
- * found in the LICENSE file. */
-
-a {
-  color: var(--link-color);
-}
-
-body {
-  --background-color: #fff;
-  --error-code-color: var(--google-gray-700);
-  --google-blue-50: rgb(232, 240, 254);
-  --google-blue-100: rgb(210, 227, 252);
-  --google-blue-300: rgb(138, 180, 248);
-  --google-blue-600: rgb(26, 115, 232);
-  --google-blue-700: rgb(25, 103, 210);
-  --google-gray-100: rgb(241, 243, 244);
-  --google-gray-300: rgb(218, 220, 224);
-  --google-gray-500: rgb(154, 160, 166);
-  --google-gray-50: rgb(248, 249, 250);
-  --google-gray-600: rgb(128, 134, 139);
-  --google-gray-700: rgb(95, 99, 104);
-  --google-gray-800: rgb(60, 64, 67);
-  --google-gray-900: rgb(32, 33, 36);
-  --heading-color: var(--google-gray-900);
-  --link-color: rgb(88, 88, 88);
-  --primary-button-fill-color-active: var(--google-blue-700);
-  --primary-button-fill-color: var(--google-blue-600);
-  --primary-button-text-color: #fff;
-  --quiet-background-color: rgb(247, 247, 247);
-  --secondary-button-border-color: var(--google-gray-500);
-  --secondary-button-fill-color: #fff;
-  --secondary-button-hover-border-color: var(--google-gray-600);
-  --secondary-button-hover-fill-color: var(--google-gray-50);
-  --secondary-button-text-color: var(--google-gray-700);
-  --small-link-color: var(--google-gray-700);
-  --text-color: var(--google-gray-700);
-  background: var(--background-color);
-  color: var(--text-color);
-  word-wrap: break-word;
-}
-
-.nav-wrapper .secondary-button {
-  background: var(--secondary-button-fill-color);
-  border: 1px solid var(--secondary-button-border-color);
-  color: var(--secondary-button-text-color);
-  float: none;
-  margin: 0;
-  padding: 8px 16px;
-}
-
-.hidden {
-  display: none;
-}
-
-html {
-  -webkit-text-size-adjust: 100%;
-  font-size: 125%;
-}
-
-.icon {
-  background-repeat: no-repeat;
-  background-size: 100%;
-}
-
-@media (prefers-color-scheme: dark) {
-  body {
-    --background-color: var(--google-gray-900);
-    --error-code-color: var(--google-gray-500);
-    --heading-color: var(--google-gray-500);
-    --link-color: var(--google-blue-300);
-    --primary-button-fill-color-active: rgb(129, 162, 208);
-    --primary-button-fill-color: var(--google-blue-300);
-    --primary-button-text-color: var(--google-gray-900);
-    --quiet-background-color: var(--background-color);
-    --secondary-button-border-color: var(--google-gray-700);
-    --secondary-button-fill-color: var(--google-gray-900);
-    --secondary-button-hover-fill-color: rgb(48, 51, 57);
-    --secondary-button-text-color: var(--google-blue-300);
-    --small-link-color: var(--google-blue-300);
-    --text-color: var(--google-gray-500);
-  }
-}
-</style>
-  <style>/* Copyright 2014 The Chromium Authors
+<title>Game - 小恐龙 （手机、电脑都可以玩）</title>
+<style>/* Copyright 2014 The Chromium Authors
    Use of this source code is governed by a BSD-style license that can be
    found in the LICENSE file. */
 
@@ -601,7 +516,7 @@ input[type=checkbox]:checked ~ .checkbox::before {
   }
 }
 </style>
-  <script>// Copyright 2022 The Chromium Authors
+<script>// Copyright 2022 The Chromium Authors
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 function assert(value,message){if(value){return}throw new Error("Assertion failed"+(message?`: ${message}`:""))}
@@ -782,5 +697,5 @@ let showingDetails=false;let lastData=null;let dinoGameInitialized=false;functio
       </div>
     `:""}
   `}Object.assign(window,{diagnoseErrors:diagnoseErrors,portalSignin:portalSignin,toggleHelpBox:toggleHelpBox,updateForDnsProbe:updateForDnsProbe,updateInitialInstruction:updateInitialInstruction});document.addEventListener("DOMContentLoaded",onDocumentLoad);</script>
-
-</head></head>
+ </body>
+</html>
