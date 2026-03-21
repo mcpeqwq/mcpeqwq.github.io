@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MCPEOfficial Blog - Game 2048 贪吃蛇 小恐龙</title>
+    <title>Game - 贪吃蛇</title>
     <style>
         * {
             margin: 0;
@@ -17,59 +17,32 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             min-height: 100vh;
             padding: 20px;
         }
 
         .game-container {
-            max-width: 500px;
+            max-width: 450px;
             width: 100%;
             background: white;
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            padding: 20px;
-            margin-top: 20px;
+            padding: 30px;
+            text-align: center;
         }
 
-        .game-tabs {
-            display: flex;
-            justify-content: space-around;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #eee;
-        }
-
-        .tab-btn {
-            padding: 10px 20px;
-            border: none;
-            background: none;
-            font-size: 18px;
-            font-weight: 600;
-            color: #666;
-            cursor: pointer;
-            transition: all 0.3s;
-            border-bottom: 3px solid transparent;
-        }
-
-        .tab-btn.active {
+        h1 {
             color: #2c3e50;
-            border-bottom: 3px solid #3498db;
+            margin-bottom: 20px;
+            font-size: 32px;
         }
 
-        .game-screen {
-            display: none;
-            width: 100%;
-            overflow: hidden;
-        }
-
-        .game-screen.active {
-            display: block;
-        }
-
-        /* 贪吃蛇样式 */
-        #snake-game {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .score {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #3498db;
+            font-weight: bold;
         }
 
         #snake-board {
@@ -78,6 +51,10 @@
             grid-template-columns: repeat(20, 1fr);
             grid-template-rows: repeat(20, 1fr);
             gap: 1px;
+            width: 100%;
+            max-width: 400px;
+            height: 400px;
+            margin: 0 auto 20px;
         }
 
         .snake-cell {
@@ -96,199 +73,56 @@
             border-radius: 50%;
         }
 
-        .snake-score {
-            font-size: 20px;
-            margin-bottom: 10px;
-            color: #2c3e50;
-        }
-
-        .snake-controls {
-            margin-top: 15px;
+        .controls {
             display: flex;
-            gap: 10px;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
         }
 
-        .snake-btn {
-            padding: 8px 15px;
+        .btn {
+            padding: 10px 25px;
             background: #3498db;
             color: white;
             border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        /* 2048样式 */
-        #game2048 {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        #board2048 {
-            background: #bbada0;
             border-radius: 8px;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(4, 1fr);
-            gap: 10px;
-            padding: 10px;
-        }
-
-        .tile2048 {
-            width: 100%;
-            height: 0;
-            padding-bottom: 100%;
-            background: #cdc1b4;
-            border-radius: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            font-weight: bold;
-            color: #776e65;
-        }
-
-        .score2048 {
-            font-size: 20px;
-            margin-bottom: 10px;
-            color: #776e65;
-        }
-
-        .restart2048 {
-            margin-top: 15px;
-            padding: 8px 20px;
-            background: #8f7a66;
-            color: white;
-            border: none;
-            border-radius: 5px;
+            font-size: 16px;
             cursor: pointer;
+            transition: background 0.3s;
         }
 
-        /* 小恐龙样式 */
-        #dino-game {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .btn:hover {
+            background: #2980b9;
         }
 
-        #dino-board {
-            width: 100%;
-            height: 200px;
-            background: #f7f7f7;
-            position: relative;
-            overflow: hidden;
-            border: 2px solid #333;
-        }
-
-        #dino {
-            width: 40px;
-            height: 40px;
-            background: #333;
-            position: absolute;
-            bottom: 0;
-            left: 50px;
-            transition: bottom 0.2s;
-        }
-
-        #cactus {
-            width: 20px;
-            height: 40px;
-            background: #2ecc71;
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            animation: moveCactus 1.5s linear infinite;
-        }
-
-        @keyframes moveCactus {
-            0% { right: 0; }
-            100% { right: 100%; }
-        }
-
-        .dino-score {
-            font-size: 20px;
-            margin-bottom: 10px;
-            color: #333;
-        }
-
-        .dino-controls {
+        .tips {
             margin-top: 15px;
+            font-size: 14px;
+            color: #666;
         }
 
-        .dino-btn {
-            padding: 8px 15px;
-            background: #333;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        /* 响应式适配 */
         @media (max-width: 400px) {
-            .tile2048 {
-                font-size: 18px;
+            #snake-board {
+                height: 300px;
+            }
+            h1 {
+                font-size: 26px;
             }
         }
     </style>
 </head>
 <body>
     <div class="game-container">
-        <div class="game-tabs">
-            <button class="tab-btn active" data-game="snake">贪吃蛇</button>
-            <button class="tab-btn" data-game="2048">2048</button>
-            <button class="tab-btn" data-game="dino">小恐龙</button>
+        <h1>经典贪吃蛇</h1>
+        <div class="score">得分: <span id="snake-score">0</span></div>
+        <div id="snake-board"></div>
+        <div class="controls">
+            <button class="btn" onclick="resetSnake()">重新开始</button>
         </div>
-
-        <!-- 贪吃蛇游戏区域 -->
-        <div class="game-screen active" id="snake-game">
-            <div class="snake-score">得分: <span id="snake-score">0</span></div>
-            <div id="snake-board" style="width: 400px; height: 400px;"></div>
-            <div class="snake-controls">
-                <button class="snake-btn" onclick="resetSnake()">重新开始</button>
-            </div>
-        </div>
-
-        <!-- 2048游戏区域 -->
-        <div class="game-screen" id="game2048">
-            <div class="score2048">得分: <span id="score2048">0</span></div>
-            <div id="board2048" style="width: 300px; height: 300px;"></div>
-            <button class="restart2048" onclick="reset2048()">重新开始</button>
-        </div>
-
-        <!-- 小恐龙游戏区域 -->
-        <div class="game-screen" id="dino-game">
-            <div class="dino-score">分数: <span id="dino-score">0</span></div>
-            <div id="dino-board">
-                <div id="dino"></div>
-                <div id="cactus"></div>
-            </div>
-            <div class="dino-controls">
-                <button class="dino-btn" onclick="jumpDino()">跳跃 (空格/点击)</button>
-                <button class="dino-btn" onclick="resetDino()">重新开始</button>
-            </div>
-        </div>
+        <div class="tips">操作说明：方向键 ↑↓←→ 控制蛇的移动</div>
     </div>
 
     <script>
-        // 游戏切换逻辑
-        const tabBtns = document.querySelectorAll('.tab-btn');
-        const gameScreens = document.querySelectorAll('.game-screen');
-
-        tabBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // 移除所有active类
-                tabBtns.forEach(b => b.classList.remove('active'));
-                gameScreens.forEach(s => s.classList.remove('active'));
-                
-                // 添加当前active类
-                btn.classList.add('active');
-                const gameId = btn.dataset.game === '2048' ? 'game2048' : `${btn.dataset.game}-game`;
-                document.getElementById(gameId).classList.add('active');
-            });
-        });
-
-        // ==================== 贪吃蛇游戏逻辑 ====================
         let snakeBoard = document.getElementById('snake-board');
         let snakeScore = document.getElementById('snake-score');
         let snake;
@@ -300,9 +134,7 @@
         // 初始化贪吃蛇
         function initSnake() {
             snakeBoard.innerHTML = '';
-            snake = [
-                { x: 10, y: 10 }
-            ];
+            snake = [{ x: 10, y: 10 }];
             food = generateFood();
             direction = 'right';
             score = 0;
@@ -370,7 +202,6 @@
                 snake.slice(1).some(segment => segment.x === head.x && segment.y === head.y)) {
                 clearInterval(snakeInterval);
                 alert(`游戏结束！得分: ${score}`);
-                resetSnake();
                 return;
             }
             
@@ -394,293 +225,8 @@
             snakeInterval = setInterval(moveSnake, 150);
         }
 
-        // ==================== 2048游戏逻辑 ====================
-        let board2048 = document.getElementById('board2048');
-        let score2048 = document.getElementById('score2048');
-        let grid;
-        let scoreVal = 0;
-
-        // 初始化2048
-        function init2048() {
-            grid = [
-                [0, 0, 0, 0],
-                [0, 0, 0, 0],
-                [0, 0, 0, 0],
-                [0, 0, 0, 0]
-            ];
-            scoreVal = 0;
-            score2048.textContent = scoreVal;
-            addRandomTile();
-            addRandomTile();
-            draw2048();
-        }
-
-        // 添加随机方块
-        function addRandomTile() {
-            let emptyTiles = [];
-            for (let i = 0; i < 4; i++) {
-                for (let j = 0; j < 4; j++) {
-                    if (grid[i][j] === 0) {
-                        emptyTiles.push({ x: i, y: j });
-                    }
-                }
-            }
-            if (emptyTiles.length === 0) return;
-            
-            const randomTile = emptyTiles[Math.floor(Math.random() * emptyTiles.length)];
-            grid[randomTile.x][randomTile.y] = Math.random() > 0.9 ? 4 : 2;
-        }
-
-        // 绘制2048棋盘
-        function draw2048() {
-            board2048.innerHTML = '';
-            for (let i = 0; i < 4; i++) {
-                for (let j = 0; j < 4; j++) {
-                    const tile = document.createElement('div');
-                    tile.classList.add('tile2048');
-                    if (grid[i][j] !== 0) {
-                        tile.textContent = grid[i][j];
-                        // 根据数值设置背景色
-                        const colors = {
-                            2: '#eee4da', 4: '#ede0c8', 8: '#f2b179',
-                            16: '#f59563', 32: '#f67c5f', 64: '#f65e3b',
-                            128: '#edcf72', 256: '#edcc61', 512: '#edc850',
-                            1024: '#edc53f', 2048: '#edc22e'
-                        };
-                        tile.style.background = colors[grid[i][j]] || '#3c3a32';
-                        tile.style.color = grid[i][j] >= 8 ? 'white' : '#776e65';
-                    }
-                    board2048.appendChild(tile);
-                }
-            }
-        }
-
-        // 移动和合并逻辑
-        function move(direction) {
-            let moved = false;
-            
-            // 向左移动
-            if (direction === 'left') {
-                for (let i = 0; i < 4; i++) {
-                    let row = grid[i].filter(val => val !== 0);
-                    let newRow = [];
-                    for (let j = 0; j < row.length; j++) {
-                        if (j < row.length - 1 && row[j] === row[j+1]) {
-                            newRow.push(row[j] * 2);
-                            scoreVal += row[j] * 2;
-                            j++;
-                            moved = true;
-                        } else {
-                            newRow.push(row[j]);
-                        }
-                    }
-                    while (newRow.length < 4) newRow.push(0);
-                    if (JSON.stringify(grid[i]) !== JSON.stringify(newRow)) moved = true;
-                    grid[i] = newRow;
-                }
-            }
-            
-            // 向右移动
-            if (direction === 'right') {
-                for (let i = 0; i < 4; i++) {
-                    let row = grid[i].filter(val => val !== 0);
-                    let newRow = [];
-                    for (let j = row.length - 1; j >= 0; j--) {
-                        if (j > 0 && row[j] === row[j-1]) {
-                            newRow.unshift(row[j] * 2);
-                            scoreVal += row[j] * 2;
-                            j--;
-                            moved = true;
-                        } else {
-                            newRow.unshift(row[j]);
-                        }
-                    }
-                    while (newRow.length < 4) newRow.unshift(0);
-                    if (JSON.stringify(grid[i]) !== JSON.stringify(newRow)) moved = true;
-                    grid[i] = newRow;
-                }
-            }
-            
-            // 向上移动
-            if (direction === 'up') {
-                for (let j = 0; j < 4; j++) {
-                    let col = [grid[0][j], grid[1][j], grid[2][j], grid[3][j]].filter(val => val !== 0);
-                    let newCol = [];
-                    for (let i = 0; i < col.length; i++) {
-                        if (i < col.length - 1 && col[i] === col[i+1]) {
-                            newCol.push(col[i] * 2);
-                            scoreVal += col[i] * 2;
-                            i++;
-                            moved = true;
-                        } else {
-                            newCol.push(col[i]);
-                        }
-                    }
-                    while (newCol.length < 4) newCol.push(0);
-                    for (let i = 0; i < 4; i++) {
-                        if (grid[i][j] !== newCol[i]) moved = true;
-                        grid[i][j] = newCol[i];
-                    }
-                }
-            }
-            
-            // 向下移动
-            if (direction === 'down') {
-                for (let j = 0; j < 4; j++) {
-                    let col = [grid[0][j], grid[1][j], grid[2][j], grid[3][j]].filter(val => val !== 0);
-                    let newCol = [];
-                    for (let i = col.length - 1; i >= 0; i--) {
-                        if (i > 0 && col[i] === col[i-1]) {
-                            newCol.unshift(col[i] * 2);
-                            scoreVal += col[i] * 2;
-                            i--;
-                            moved = true;
-                        } else {
-                            newCol.unshift(col[i]);
-                        }
-                    }
-                    while (newCol.length < 4) newCol.unshift(0);
-                    newCol.reverse();
-                    for (let i = 0; i < 4; i++) {
-                        if (grid[i][j] !== newCol[i]) moved = true;
-                        grid[i][j] = newCol[i];
-                    }
-                }
-            }
-            
-            if (moved) {
-                addRandomTile();
-                score2048.textContent = scoreVal;
-                draw2048();
-                // 检查游戏结束
-                if (!canMove()) {
-                    alert(`游戏结束！得分: ${scoreVal}`);
-                }
-            }
-        }
-
-        // 检查是否还能移动
-        function canMove() {
-            // 检查空方块
-            for (let i = 0; i < 4; i++) {
-                for (let j = 0; j < 4; j++) {
-                    if (grid[i][j] === 0) return true;
-                }
-            }
-            
-            // 检查相邻相同方块
-            for (let i = 0; i < 4; i++) {
-                for (let j = 0; j < 4; j++) {
-                    if (j < 3 && grid[i][j] === grid[i][j+1]) return true;
-                    if (i < 3 && grid[i][j] === grid[i+1][j]) return true;
-                }
-            }
-            return false;
-        }
-
-        // 键盘控制2048
-        document.addEventListener('keydown', (e) => {
-            if (document.getElementById('game2048').classList.contains('active')) {
-                if (e.key === 'ArrowUp') move('up');
-                if (e.key === 'ArrowDown') move('down');
-                if (e.key === 'ArrowLeft') move('left');
-                if (e.key === 'ArrowRight') move('right');
-            }
-        });
-
-        // 重置2048
-        function reset2048() {
-            init2048();
-        }
-
-        // ==================== 小恐龙游戏逻辑 ====================
-        let dino = document.getElementById('dino');
-        let cactus = document.getElementById('cactus');
-        let dinoScore = document.getElementById('dino-score');
-        let isJumping = false;
-        let dinoScoreVal = 0;
-        let dinoInterval;
-
-        // 初始化小恐龙
-        function initDino() {
-            isJumping = false;
-            dinoScoreVal = 0;
-            dinoScore.textContent = dinoScoreVal;
-            dino.style.bottom = '0';
-            // 重置仙人掌动画
-            cactus.style.animation = 'none';
-            setTimeout(() => {
-                cactus.style.animation = 'moveCactus 1.5s linear infinite';
-            }, 10);
-            
-            // 计分
-            clearInterval(dinoInterval);
-            dinoInterval = setInterval(() => {
-                dinoScoreVal++;
-                dinoScore.textContent = dinoScoreVal;
-            }, 100);
-            
-            // 碰撞检测
-            setInterval(() => {
-                const dinoRect = dino.getBoundingClientRect();
-                const cactusRect = cactus.getBoundingClientRect();
-                
-                if (
-                    dinoRect.right > cactusRect.left &&
-                    dinoRect.left < cactusRect.right &&
-                    dinoRect.bottom > cactusRect.top
-                ) {
-                    clearInterval(dinoInterval);
-                    alert(`游戏结束！分数: ${dinoScoreVal}`);
-                    resetDino();
-                }
-            }, 10);
-        }
-
-        // 恐龙跳跃
-        function jumpDino() {
-            if (isJumping) return;
-            isJumping = true;
-            let position = 0;
-            const jumpInterval = setInterval(() => {
-                // 上升
-                if (position < 100) {
-                    position += 10;
-                    dino.style.bottom = `${position}px`;
-                } 
-                // 下降
-                else {
-                    position -= 10;
-                    dino.style.bottom = `${position}px`;
-                    if (position === 0) {
-                        clearInterval(jumpInterval);
-                        isJumping = false;
-                    }
-                }
-            }, 20);
-        }
-
-        // 重置小恐龙
-        function resetDino() {
-            initDino();
-        }
-
-        // 小恐龙键盘控制
-        document.addEventListener('keydown', (e) => {
-            if (document.getElementById('dino-game').classList.contains('active') && e.key === ' ') {
-                jumpDino();
-            }
-        });
-
-        // 移动端点击跳跃
-        document.getElementById('dino-board').addEventListener('click', jumpDino);
-
-        // 初始化所有游戏
-        window.onload = () => {
-            resetSnake();
-            init2048();
-            initDino();
-        };
+        // 页面加载初始化
+        window.onload = resetSnake;
     </script>
 </body>
 </html>
