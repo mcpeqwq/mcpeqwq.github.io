@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game - Chrome-小恐龙</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .game-container {
+            max-width: 600px;
+            width: 100%;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            padding: 30px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 32px;
+        }
+
+        .score {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        #dino-board {
+            width: 100%;
+            height: 250px;
+            background: #f7f7f7;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #333;
+            margin: 0 auto 20px;
+        }
+
+        #dino {
+            width: 45px;
+            height: 45px;
+            background: #333;
+            position: absolute;
+            bottom: 0;
+            left: 50px;
+            transition: bottom 0.2s ease;
+            border-radius: 3px;
+        }
+
+        #cactus {
+            width: 25px;
+            height: 45px;
+            background: #2ecc71;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            border-radius: 3px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 10px 25px;
+            background: #333;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #555;
+        }
+
+        .tips {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        @media (max-width: 400px) {
+            #dino-board {
+                height: 200px;
+            }
+            h1 {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>Chrome小恐龙</h1>
+        <div class="score">分数: <span id="dino-score">0</span></div>
+        <div id="dino-board">
+            <div id="dino"></div>
+            <div id="cactus"></div>
+        </div>
+        <div class="controls">
+            <button class="btn" onclick="jumpDino()">跳跃</button>
+            <button class="btn" onclick="resetDino()">重新开始</button>
+        </div>
+        <div class="tips">操作说明：空格键 / 点击跳跃按钮 / 点击游戏区域 控制跳跃</div>
+    </div>
+
+    <script>
+        let dino = document.getElementById('dino');
+        let cactus = document.getElementById('cactus');
+        let dinoScore = document.getElementById('dino-score');
+        let isJumping = false;
+        let dinoScoreVal = 0;
+        let dinoInterval;
+        let cactusInterval;
+
+        // 初始化小恐龙
+        function initDino() {
+            // 重置状态
+            isJumping = false;
+            dinoScoreVal = 0;
+            dinoScore.textContent = dinoScoreVal;
+            dino.style.bottom = '0';
+            
+            // 清除旧的定时器
+            clearInterval(dinoInterval);
+            clearInterval(cactusInterval);
+            
+            // 重置仙人掌
+            cactus.style.right = '0';
+            cactus.style.display = 'block';
+            
+            // 计分定时器
+            dinoInterval = setInterval(() => {
+                dinoScoreVal++;
+                dinoScore.textContent = dinoScoreVal;
+            }, 100);
+            
+            // 仙人掌移动
+            cactusInterval = setInterval(() => {
+                let currentRight = parseInt(cactus.style.right) || 0;
+                if (currentRight > document.getElementById('dino-board').offsetWidth) {
+                    currentRight = -30;
+                }
+                cactus.style.right = `${currentRight + 5}px`;
+                
+                // 碰撞检测
+                const dinoRect = dino.getBoundingClientRect();
+                const cactusRect = cactus.getBoundingClientRect();
+                
+                if (
+                    dinoRect.right > cactusRect.left &&
+                    dinoRect.left < cactusRect.right &&
+                    dinoRect.bottom > cactusRect.top
+                ) {
+                    clearInterval(dinoInterval);
+                    clearInterval(cactusInterval);
+                    alert(`游戏结束！分数: ${dinoScoreVal}`);
+                }
+            }, 20);
+        }
+
+        // 恐龙跳跃
+        function jumpDino() {
+            if (isJumping) return;
+            isJumping = true;
+            
+            let position = 0;
+            const jumpInterval = setInterval(() => {
+                // 上升阶段
+                if (position < 120) {
+                    position += 10;
+                    dino.style.bottom = `${position}px`;
+                } 
+                // 下降阶段
+                else {
+                    position -= 10;
+                    dino.style.bottom = `${position}px`;
+                    if (position === 0) {
+                        clearInterval(jumpInterval);
+                        isJumping = false;
+                    }
+                }
+            }, 20);
+        }
+
+        // 重置小恐龙
+        function resetDino() {
+            initDino();
+        }
+
+        // 键盘控制
+        document.addEventListener('keydown', (e) => {
+            if (e.key === ' ') jumpDino();
+        });
+
+        // 点击游戏区域跳跃
+        document.getElementById('dino-board').addEventListener('click', jumpDino);
+
+        // 页面加载初始化
+        window.onload = initDino;
+    </script>
+</body>
+</html>
