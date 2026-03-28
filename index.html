@@ -1,425 +1,633 @@
 <!--
-爱江山更爱美人
-哪个英雄好汉宁愿孤单
-请勿盗取HTML代码文件，否则依法制裁
-由MCPEQWQ制作，早期由minqwq构建！
+2026.3.29
+mcpeqwq主页，Hanson编制
+禁F12和右键
  -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="description" content="mcpeqwq的个人网站" />
-<meta name="keywords" content="MCPE,MCPEQWQ,MCPEQWQde主页,我爱洛天依,由minqwq架构,HTML5编写,花了3小时写的主页" />
+<meta name="keywords" content="MCPE,MCPEQWQ,MCPEQWQde主页,我爱洛天依,我爱Miku,由minqwq架构,HTML5编写,花了3小时写的主页" />
 <link href="https://q.qlogo.cn/headimg_dl?dst_uin=3111737636&spec=640&img_type=jpg" rel="shortcut icon">
 <title>MCPEOfficial BLOG</title>
-<!--
-CSS部分(不建议改掉)
- -->
+
+<!-- 字体引入 - 兼容老浏览器 -->
 <style>
-/* 背景设置 */
+@font-face {
+    font-family: 'HarmonyOS';
+    src: url(https://mcpeqwq.github.io/HarmonyOS_Sans_Thin_Italic.ttf) format('truetype'),
+         url(https://nbnb.cn/ddd.woff) format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; /* 兼容老浏览器字体加载 */
+}
+
+/* 基础重置 - 适配安卓4+ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent; /* 去除安卓点击高亮 */
+}
+
 body {
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.content {
-  flex: 1;
-}
-
-.footer {
-  background-color: #255;
-  color: white;
-  text-align: center;
-  padding: 10px 0;
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-}
-</style>
-<style>
-/* 菜单设置 */
-.hamburger {
-  display: none;
-  cursor: pointer;
-}
-.menu {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  background-color: #87CEFA;
-  color: white;
-}
-.menu ul {
-  list-style-type: none;
-  display: flex;
-}
-.menu ul li {
-  margin-right: 20px;
-}
-.profile-img {
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-}
-.other-img {
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-}
-</style>
-<style>
-/* 头像&卡片设置 */
-.profile-img {
-  width: 300px;
-  height: 300px;
-  border-radius: 50%; /* 将图片剪裁为圆形 */
-  transition: transform 0.5s; /* 添加旋转过渡效果 */
-}
-
-.profile-img:hover {
-  transform: rotate(360deg); /* 鼠标悬停时旋转图片 */
-}
-</style>
-<style>
-/* 卡片自身设置 */
-.card {
-  width: 300px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
-}
-
-.card img {
-  width: 100%;
-  border-radius: 5px;
-}
-
-.card h2 {
-  font-size: 1.2em;
-  margin-top: 10px;
-}
-
-.card p {
-  font-size: 1em;
-  color: #666;
-}
-</style>
-<style>
-/* 背景白色&卡片半透明设置 */
-.container {
-  display: flex;
-  justify-content: center;
-}
-
-.card {
-  width: 600px;
-  padding: 20px;
-  background-color: rgba(255, 255, 255, 0.8); /* 不透明的白色背景 */
-  border-radius: 10px;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-table td, table th {
-  padding: 8px;
-  border: 1px solid #ddd;
-}
-
-table th {
-  background-color: #f2f2f2;
-}
-</style>
-<style>
-a {
-  color:blue; /* 设置超链接颜色为蓝色 */
-  text-decoration: none; /* 去掉下划线 */
-}
-.custom-link {
-  color:white; /* 设置超链接颜色蓝色 */
-  text-decoration: none; /* 去掉下划线 */
-}
-</style>
-<style>
-/* 壁纸设置(由梨次元API提供<不是我的>) */
-     body {
-    font-family: myfont !important;
+    font-family: 'HarmonyOS', sans-serif;
     background-image: url(https://t.alcy.cc/ysz);
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-}   
-    </style>
-<script>
-/* 当前时间设置 */
-    function displayTime() {
-      var currentTime = new Date();
-      var hours = currentTime.getHours();
-      var minutes = currentTime.getMinutes();
-      var seconds = currentTime.getSeconds();
-      var timeString = hours + ':' + minutes + ':' + seconds;
-      document.getElementById('time').innerHTML = timeString;
-    }
-
-    setInterval(displayTime, 1000);
-  </script>
-<script>
-/* 一言API设置 */
-  fetch('https://v1.hitokoto.cn')
-    .then(response => response.json())
-    .then(data => {
-      const hitokoto = document.querySelector('#hitokoto_text')
-      hitokoto.href = `https://hitokoto.cn/?uuid=${data.uuid}`
-      hitokoto.innerText = data.hitokoto
-    })
-    .catch(console.error)
-</script>
-<style> 
-/* 字体设置 */
-@font-face
-{
-    font-family: myFirstFont;
-    src: url(https://mcpeqwq.github.io/HarmonyOS_Sans_Thin_Italic.ttf);
+    min-height: 100vh;
+    color: #333;
 }
- 
-div
-{
-    font-family:myFirstFont;
+
+/* 蓝色渐变主题 */
+:root {
+    --gradient-blue: linear-gradient(135deg, #87CEFA 0%, #4169E1 100%);
+    --light-blue: #87CEFA;
+    --dark-blue: #4169E1;
+    --white-trans: rgba(255, 255, 255, 0.9);
+}
+
+/* 头部区域 - 旋转头像 + 汉堡菜单 */
+.header {
+    background: var(--gradient-blue);
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 100;
+}
+
+/* 旋转头像样式 */
+.rotate-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.8s ease;
+    border: 3px solid white;
+    margin-right: 15px;
+}
+
+.rotate-avatar.active {
+    transform: rotate(360deg);
+}
+
+/* 网站标题 */
+.site-title {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    flex: 1;
+}
+
+/* 汉堡菜单按钮 */
+.hamburger-btn {
+    width: 40px;
+    height: 40px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.hamburger-btn span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--dark-blue);
+    margin: 3px 0;
+    transition: all 0.3s ease;
+}
+
+/* 汉堡菜单面板 */
+.hamburger-panel {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 280px;
+    background: var(--white-trans);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    padding: 15px;
+    display: none;
+    z-index: 99;
+}
+
+.hamburger-panel.active {
+    display: block;
+}
+
+/* 菜单内时间显示 */
+.menu-time {
+    text-align: center;
+    padding: 8px 0;
+    font-size: 16px;
+    color: var(--dark-blue);
+    border-bottom: 1px solid #eee;
+    margin-bottom: 10px;
+}
+
+/* 菜单子项 */
+.menu-item {
+    margin-bottom: 12px;
+}
+
+.menu-item-title {
+    background: var(--gradient-blue);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.menu-item-content {
+    padding: 10px;
+    background: white;
+    border-radius: 4px;
+    margin-top: 5px;
+    display: none;
+}
+
+.menu-item-content.active {
+    display: block;
+}
+
+.menu-item-content a {
+    display: block;
+    color: var(--dark-blue);
+    text-decoration: none;
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.menu-item-content a:last-child {
+    border-bottom: none;
+}
+
+/* 主容器 - 双列布局 */
+.main-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 15px;
+    gap: 15px;
+}
+
+/* 左侧边栏 */
+.sidebar-left {
+    flex: 1;
+    min-width: 280px;
+}
+
+/* 右侧主内容 */
+.sidebar-right {
+    flex: 2;
+    min-width: 280px;
+}
+
+/* 通用卡片样式 */
+.card {
+    background: var(--white-trans);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* 左侧个人描述卡片 */
+.profile-card .square-avatar {
+    width: 100%;
+    height: auto;
+    max-width: 200px;
+    border-radius: 8px;
+    margin: 0 auto 10px;
+    display: block;
+}
+
+.profile-card .username {
+    text-align: center;
+    font-size: 22px;
+    color: var(--dark-blue);
+    margin-bottom: 10px;
+}
+
+.hitokoto-text {
+    text-align: center;
+    font-style: italic;
+    color: #666;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 10px;
+}
+
+/* 天气卡片 */
+.weather-card iframe {
+    width: 100%;
+    border: none;
+}
+
+/* 统计图片 */
+.stats-img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* 联系方式卡片 */
+.contact-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.contact-item:last-child {
+    border-bottom: none;
+}
+
+.contact-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+.contact-text {
+    color: #333;
+    font-size: 16px;
+}
+
+/* 网站日志表格 */
+.log-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+}
+
+.log-table th, .log-table td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.log-table th {
+    background: var(--light-blue);
+    color: white;
+}
+
+/* 音乐卡片优化 */
+.music-item {
+    margin-bottom: 10px;
+}
+
+.music-title {
+    background: var(--gradient-blue);
+    color: white;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.music-content {
+    padding: 10px 0;
+}
+
+.music-content iframe {
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+/* 页脚美化 */
+.footer {
+    background: var(--gradient-blue);
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+.footer-shields {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.footer-other {
+    margin-top: 10px;
+}
+
+.footer a {
+    color: white;
+    text-decoration: none;
+}
+
+/* 适配安卓4+老浏览器的降级处理 */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    .rotate-avatar {
+        -webkit-transition: transform 0.8s ease;
+    }
+    .rotate-avatar.active {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+    }
+    .hamburger-panel {
+        width: 100%;
+    }
 }
 </style>
 </head>
 <body>
-<!--
-菜单设置
- -->
-<div class="menu">
-  <div class="hamburger">&#9776;</div>
-  <ul>
-  <li><big>MCPEOfficial BLOG</big></li>
-<li><big><div id="time">5:1:14</div></big></li>
-    <li><a href="#" class="custom-link">首页</a></li>
- </ul>
+<div class="header">
+    <img src="https://q1.qlogo.cn/g?b=qq&nk=3111737636&s=640" alt="Profile Image" class="rotate-avatar" id="rotateAvatar">
+    <div class="site-title">MCPEOfficial BLOG</div>
+    <button class="hamburger-btn" id="hamburgerBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    
+    <!-- 汉堡菜单面板 -->
+    <div class="hamburger-panel" id="hamburgerPanel">
+        <div class="menu-time" id="menuTime">00:00:00</div>
+        
+        <!-- 友情链接子项 -->
+        <div class="menu-item">
+            <div class="menu-item-title" data-target="friendLinks">友情链接</div>
+            <div class="menu-item-content" id="friendLinks">
+                <a href="http://minqwq.github.io">minqwq的个人网站</a>
+                <a href="http://de233.us.kg">Dan_Evan的个人网站</a>
+                <a href="http://mtice.top">MeltIce的个人网站</a>
+                <a href="http://rongxuan2022.github.io">rongxuan的个人网站</a>
+                <a href="http://templeovo.github.io">Temple的个人网站</a>
+                <a href="http://chiyao6840.github.io">chiyao的个人网站</a>
+                <a href="https://mc-windows114514.github.io/winnb">windows1145 个人网站</a>
+                <a href="https://outice2024.github.io/outice2024">Outice 个人网站</a>
+            </div>
+        </div>
+        
+        <!-- 小页面子项 -->
+        <div class="menu-item">
+            <div class="menu-item-title" data-target="smallPages">一些小页面</div>
+            <div class="menu-item-content" id="smallPages">
+                <a href="014downland.html">老设备下载0.14.3</a>
+                <a href="Cat.html">橘猫视频</a>
+            </div>
+        </div>
+        
+        <!-- 网站历史子项 -->
+        <div class="menu-item">
+            <div class="menu-item-title" data-target="siteHistory">网站历史</div>
+            <div class="menu-item-content" id="siteHistory">
+                <a href="old.html">网站原始版本</a>
+                <a href="old2.html">网站2024年版本</a>
+            </div>
+        </div>
+    </div>
 </div>
+
+<!-- 主内容容器 -->
+<div class="main-container">
+    <!-- 左侧边栏 -->
+    <div class="sidebar-left">
+        <!-- 个人描述卡片 -->
+        <div class="card profile-card">
+            <img src="https://q1.qlogo.cn/g?b=qq&nk=3111737636&s=640" alt="Square Avatar" class="square-avatar">
+            <div class="username">MCPE</div>
+            <div class="hitokoto-text" id="hitokoto_text"></div>
+            
+            <!-- 关于本站 -->
+            <div class="about-site">
+                <p>这是一个个人的网站，上世纪风格，欢迎来到此网站</p>
+                <p style="margin-top: 8px;">来自芙兰社提供帮助，芙兰社为个人网站，不是我的</p>
+            </div>
+        </div>
+        
+        <!-- 天气卡片 -->
+        <div class="card weather-card">
+            <iframe allowtransparency="true" frameborder="0" height="96" 
+                    src="https://tianqi.2345.com/plugin/widget/index.htm?s=2&z=3&t=0&v=0&d=3&bd=0&k=&f=&ltf=009944&htf=cc0000&q=1&e=1&a=1&c=54511&w=385&h=96&align=center"></iframe>
+        </div>
+    </div>
+    
+    <!-- 右侧主内容 -->
+    <div class="sidebar-right">
+        <!-- 统计图片 -->
+        <div class="card">
+            <img src="https://count.himiku.com/get/@mcpeqwq?theme=rule34" alt="Stats" class="stats-img">
+            
+            <!-- 联系方式卡片 -->
+            <div class="contact-card">
+                <h3 style="color: var(--dark-blue); margin-bottom: 10px;">站长联系方式（禁止骚扰）</h3>
+                <div class="contact-item">
+                    <img src="https://files.seeusercontent.com/2026/03/28/1qIe/d2df61cbdac05e3a2061337b1773a3b0.webp" alt="微信" class="contact-icon">
+                    <span class="contact-text">MCPEKlee</span>
+                </div>
+                <div class="contact-item">
+                    <img src="https://files.seeusercontent.com/2026/03/28/7Dtk/e92b106ec6b979176490735fe2c7fccf.webp" alt="QQ" class="contact-icon">
+                    <span class="contact-text">3111737636</span>
+                </div>
+                <div class="contact-item">
+                    <img src="https://th.bing.com/th/id/R.6777bb8b11f800a67ee3498ad6e5687c?rik=HD4KMPbe0SFeBA&riu=http%3a%2f%2fwww.kuaipng.com%2fUploads%2fpic%2fw%2f2022%2f11-11%2f133047%2fwater_133047_698_698_.png&ehk=f0IfIqjpps4XvLh988tHfJDlPG0EExuSi%2bmhN0cBZHM%3d&risl=&pid=ImgRaw&r=0" alt="邮箱" class="contact-icon">
+                    <span class="contact-text">3111737636@qq.com</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 网站日志卡片 -->
+        <div class="card">
+            <h3 style="color: var(--dark-blue); margin-bottom: 10px;">网站日志</h3>
+            <table class="log-table">
+                <tr>
+                    <th>日期</th>
+                    <th>更新内容</th>
+                </tr>
+                <tr>
+                    <td>2024.5.1</td>
+                    <td>本站开始运营</td>
+                </tr>
+                <tr>
+                    <td>2024.5.5</td>
+                    <td>网站一些基础的已弄好</td>
+                </tr>
+                <tr>
+                    <td>2024.6.9</td>
+                    <td>本站第一次开始半重构</td>
+                </tr>
+                <tr>
+                    <td>2024.11.2</td>
+                    <td>网站完全重构</td>
+                </tr>
+                <tr>
+                    <td>2026.3.29</td>
+                    <td>网站第二次完全重构</td>
+                </tr>
+            </table>
+        </div>
+        
+        <!-- 音乐卡片 -->
+        <div class="card">
+            <h3 style="color: var(--dark-blue); margin-bottom: 10px;">音乐专区（网易云源）</h3>
+            
+            <div class="music-item">
+                <div class="music-title" data-target="musicA">音乐A</div>
+                <div class="music-content" id="musicA" style="display: none;">
+                    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" height="430" 
+                            src="https://music.163.com/outchain/player?type=0&id=7068025847&auto=1&height=430"></iframe>
+                </div>
+            </div>
+            
+            <div class="music-item">
+                <div class="music-title" data-target="musicB">音乐B</div>
+                <div class="music-content" id="musicB" style="display: none;">
+                    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" height="66" 
+                            src="https://music.163.com/outchain/player?type=2&id=1478965386&auto=1&height=66"></iframe>
+                    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" height="66" 
+                            src="https://music.163.com/outchain/player?type=2&id=32235280&auto=1&height=66"></iframe>
+                    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" height="66" 
+                            src="https://music.163.com/outchain/player?type=2&id=1345872140&auto=1&height=66"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<boby>
-<br>
-<!--
-头像设置
- -->
-<center>
-  <img src="https://q1.qlogo.cn/g?b=qq&nk=3111737636&s=640" alt="Profile Image" class="profile-img">
-<br>
-<h1>MCPE</h1>
-</p>
-</center>
-<!--
-简介设置
- -->
-<div class="container">
-  <div class="card">
-<center>
-<h3>这是一个个人的网站，上世纪风格，欢迎来到此网站</h3>
-<h4>来自芙兰社提供帮助，芙兰社为个人网站，不是我的，网址<a href="https://minqwq.kz.mk">minqwq.us.kg</a>
-<p id="hitokoto">
-<h4>
- <a href="https://hitokoto.cn/?uuid=c6087865-57d8-42c8-8549-d32a9509e2b5" id="hitokoto_text"></a>
-</h4>
-</center>
-</div>
-</div>
-<br>
-<br>
-<br>
-</div>
-<!--
-天气API设置&卡片001
- -->
-<div class="container">
-  <div class="card">
-<iframe allowtransparency="true" frameborder="0" width="385" height="96" scrolling="no" src="https://tianqi.2345.com/plugin/widget/index.htm?s=2&amp;z=3&amp;t=0&amp;v=0&amp;d=3&amp;bd=0&amp;k=&amp;f=&amp;ltf=009944&amp;htf=cc0000&amp;q=1&amp;e=1&amp;a=1&amp;c=54511&amp;w=385&amp;h=96&amp;align=center"></iframe>
-</div>
-</div>
-<br>
-<br>
-<div>
-<!--
-个人简介设置B&卡片002
- -->
-<center>
-<div class="container">
-  <div class="card">
-    <img src="https://count.himiku.com/get/@mcpeqwq?theme=rule34"  style="width: 100%; border-radius: 10px;">
-<br>
-<br>
-<details>
-<summary>网站日志</summary>
-    <table>
-      <tr>
-        <th>日期</th>
-        <th>更新内容</th>
-      </tr>
-      <tr>
-        <td>2024.5.1</td>
-        <td>本站开始运营</td>
-      </tr>
-      <tr>
-        <td>2024.5.5</td>
-        <td>网站一些基础的已弄好</td>
-      </tr>
-      <tr>
-        <td>2024.6.9</td>
-        <td> 本站第一次开始半重构</td>
-      </tr>
-      <tr>
-        <td>2024.11.2</td>
-        <td>网站完全重构</td>
-      </tr>
-</table>
-</details>
-<br>
-<h2>站主的联系方式，有需要在用，禁止骚扰</h2>
-<table>
- <tr>
-        <th>我滴扣扣</th>
-        <th>3111737636</th>
-      </tr>
-      <tr>
-        <td>微信</td>
-        <td>MCPEKlee</td>
-      </tr>
-      <tr>
-        <td>邮箱</td>
-        <td>3111737636@qq.com</td>
-      </tr>
-       </table>
-<h3>站长tg不常用，所以我不放</h3>
-  </div>
-</div>
-<br>
-<!--
-友情链接设置&卡片003
- -->
-<div class="container">
-  <div class="card">
-    <img src="https://t.icp.im/files/mk/FA71E0C869C326F3D59914EBF4AD0D88.jpg" alt="  " style="width: 50%; border-radius: 10px;">
-    <h2>示范性友情链接</h2>
-    <table>
-      <tr>
-        <th>贵站名称</th>
-        <th>贵站地址</th>
-      </tr>
-      <tr>
-        <td>minqwq的个人网站</td>
-        <td><a href="http://minqwq.github.io">minqwq.github.io</a></td>
-      </tr>
-      <tr>
-        <td>Dan_Evan的个人网站</td>
-        <td><a href="http://de233.us.kg">de233.us.kg</a></td>
-      </tr>
-      <tr>
-        <td>MeltIce的个人网站</td>
-        <td><a href="http://mtice.top">mtice.top</a></td>
-      </tr>
-      <tr>
-        <td>rongxuan的个人网站</td>
-        <td><a href="http://rongxuan2022.github.io">rongxuan2022.github.io</a></td>
-      </tr>
-      <tr>
-        <td>Temple的个人网站</td>
-        <td><a href="http://templeovo.github.io">templeovo.github.io</a></td>
-      </tr>
-      <tr>
-        <td>chiyao的个人网站</td>
-        <td><a href="http://chiyao6840.github.io">chiyao6840.github.io</a></td>
-      </tr>
-      <tr>
-        <td>windows1145 个人网站</td>
-        <td><a href="https://mc-windows114514.github.io/winnb">mc-windows114514.github.io/winnb</a></td>
-      </tr>
-      <tr>
-        <td>Outice 个人网站</td>
-        <td><a href="https://outice2024.github.io/outice2024">outice2024.github.io/outice2024</a></td>
-      </tr>
-      <tr>
-        <td>本站老页面</td>
-        <td><a href="https://mcpeqwq.github.io/Old">mcpeqwq.github.io/Old</a></td>
-      </tr>
-    </table>
-  </div>
-</div>
-<br>
-<!--
-音乐设置&卡片004
- -->
-<div class="container">
- <div class="card">
-  <h2>这里有一些音乐，你们可以听</h2>
-  <h3>Music 利用网易云源</h3>
-<big>
-<details>
-<summary>音乐A</summary>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="280" height="520" src="https://music.163.com/outchain/player?type=0&amp;id=7068025847&amp;auto=1&amp;height=430"></iframe>
-</details>
-</big>
-<big>
-<details>
-<summary>音乐B</summary>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="https://music.163.com/outchain/player?type=2&amp;id=1478965386&amp;auto=1&amp;height=66"></iframe>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="https://music.163.com/outchain/player?type=2&amp;id=32235280&amp;auto=1&amp;height=66"></iframe>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="https://music.163.com/outchain/player?type=2&amp;id=1345872140&amp;auto=1&amp;height=66"></iframe>
-</details>
-</big>
- </div>
-</div>
-</div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<!--
-页脚JS代码(不建议更改)
- -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-/* 让页脚固定的JS */
-$(document).ready(function(){
-  $('.hamburger').click(function(){
-    $('.menu ul').slideToggle();
-  });
-});
-</script>
-<!--
-页脚代码设置
- -->
+
+<!-- 页脚 -->
 <div class="footer">
-  <div class="fixed-box">
-<small>MCPEQWQ<img src="https://mcpeqwq.github.io/e.jpg" weigh="20px" height="20px" alt="MCPEQWQ">minqwq的picvew大头在他个人网站 懒得搞</small>
-  <img src="https://img.shields.io/badge/©-MCPE Studio & 芙兰社 2022——2024-green">
-  <img src="https://img.shields.io/badge/Powered%20by-mcpeqwq-blue">
-  <img src="https://img.shields.io/badge/字体选自-华为字体-purple">
-  <img src="https://img.shields.io/badge/页面-Github%20Pages-orange">
- <a href="https://icp.gov.moe/?keyword=20240726"><img src="https://img.shields.io/badge/萌ICP备-20240726号-red"></a>
-<a href="http://wapmz.com/in/101"><img src="http://wapmz.com/cn/small/101" alt="wapmz.com"></a>
-<small>
-做最好的你！
-</small>  
+    <div class="footer-shields">
+        <img src="https://img.shields.io/badge/©-MCPE Studio & 芙兰社 2022——2024-green" alt="版权">
+        <img src="https://img.shields.io/badge/Powered%20by-mcpeqwq-blue" alt="Powered by">
+        <img src="https://img.shields.io/badge/字体选自-华为字体-purple" alt="字体">
+        <img src="https://img.shields.io/badge/页面-Github%20Pages-orange" alt="页面">
+        <a href="https://icp.gov.moe/?keyword=20240726"><img src="https://img.shields.io/badge/萌ICP备-20240726号-red" alt="萌ICP"></a>
+    </div>
+    <div class="footer-other">
+        <small>MCPEQWQ<img src="https://mcpeqwq.github.io/e.jpg" width="20px" height="20px" alt="MCPEQWQ">minqwq的picvew大头在他个人网站 懒得搞</small>
+        <br>
+        <a href="http://wapmz.com/in/101"><img src="http://wapmz.com/cn/small/101" alt="wapmz.com"></a>
+        <br>
+        <small>做最好的你！</small>
+    </div>
 </div>
-</div>
+
+<!-- 核心功能JS -->
+<script>
+// 兼容安卓4+老浏览器的ES5写法
+(function() {
+    // 1. 头像点击旋转
+    var rotateAvatar = document.getElementById('rotateAvatar');
+    rotateAvatar.onclick = function() {
+        this.classList.add('active');
+        setTimeout(function() {
+            rotateAvatar.classList.remove('active');
+        }, 800);
+    };
+
+    // 2. 汉堡菜单切换
+    var hamburgerBtn = document.getElementById('hamburgerBtn');
+    var hamburgerPanel = document.getElementById('hamburgerPanel');
+    hamburgerBtn.onclick = function() {
+        hamburgerPanel.classList.toggle('active');
+    };
+
+    // 3. 菜单子项展开/收起
+    var menuItemTitles = document.querySelectorAll('.menu-item-title');
+    for (var i = 0; i < menuItemTitles.length; i++) {
+        menuItemTitles[i].onclick = function() {
+            var targetId = this.getAttribute('data-target');
+            var targetContent = document.getElementById(targetId);
+            targetContent.classList.toggle('active');
+        };
+    }
+
+    // 4. 音乐项展开/收起
+    var musicTitles = document.querySelectorAll('.music-title');
+    for (var j = 0; j < musicTitles.length; j++) {
+        musicTitles[j].onclick = function() {
+            var targetId = this.getAttribute('data-target');
+            var targetContent = document.getElementById(targetId);
+            targetContent.style.display = targetContent.style.display === 'none' ? 'block' : 'none';
+        };
+    }
+
+    // 5. 当前时间显示
+    function displayTime() {
+        var currentTime = new Date();
+        var hours = currentTime.getHours();
+        var minutes = currentTime.getMinutes();
+        var seconds = currentTime.getSeconds();
+        
+        // 补零
+        hours = hours < 10 ? '0' + hours : hours;
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+        
+        var timeString = hours + ':' + minutes + ':' + seconds;
+        document.getElementById('menuTime').innerHTML = timeString;
+    }
+    setInterval(displayTime, 1000);
+    displayTime(); // 初始化
+
+    // 6. 一言API加载
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'https://v1.hitokoto.cn/?uuid=023ecedd-4fcf-4c63-a92a-368fe04ad7df', true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            try {
+                var data = JSON.parse(xhr.responseText);
+                document.getElementById('hitokoto_text').innerHTML = data.hitokoto;
+            } catch (e) {
+                document.getElementById('hitokoto_text').innerHTML = '人生如逆旅，我亦是行人。';
+            }
+        }
+    };
+    xhr.send();
+
+    // 7. 禁止右键
+    document.oncontextmenu = function() {
+        return false;
+    };
+
+    // 8. 禁止F12
+    document.onkeydown = function(e) {
+        e = e || window.event;
+        if (e.keyCode === 123) { // F12
+            alert('不能这样做！');
+            return false;
+        } else if ((e.ctrlKey && e.shiftKey && e.keyCode === 73) || // Ctrl+Shift+I
+                   (e.ctrlKey && e.shiftKey && e.keyCode === 74) || // Ctrl+Shift+J
+                   (e.ctrlKey && e.keyCode === 85)) { // Ctrl+U
+            alert('不能这样做！');
+            return false;
+        }
+    };
+
+    // 9. 点击页面其他区域关闭汉堡菜单
+    document.addEventListener('click', function(e) {
+        if (!hamburgerPanel.contains(e.target) && e.target !== hamburgerBtn) {
+            hamburgerPanel.classList.remove('active');
+        }
+    });
+})();
+</script>
 </body>
 </html>
 <!--
-爱江山更爱美人
-哪个英雄好汉宁愿孤单
-请勿盗取HTML代码文件，否则依法制裁
-由MCPEQWQ制作，早期由minqwq构建！
+mcpeqwq主页，由Hanson编制~
  -->
